@@ -1,0 +1,56 @@
+﻿version: '3.8'
+
+services:
+  landing:
+    image: devsandovalbezerra/poupeja-landing:latest
+    networks:
+      - traefik-public
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 1
+        delay: 10s
+        order: start-first
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.landing.rule=Host(`app360.mercantilizar.com.br`)"
+        - "traefik.http.routers.landing.entrypoints=websecure"
+        - "traefik.http.routers.landing.tls.certresolver=letsencrypt"
+        - "traefik.http.services.landing.loadbalancer.server.port=80"
+        # Redirect HTTP -> HTTPS
+        - "traefik.http.routers.landing-http.rule=Host(`app360.mercantilizar.com.br`)"
+        - "traefik.http.routers.landing-http.entrypoints=web"
+        - "traefik.http.routers.landing-http.middlewares=https-redirect"
+        - "traefik.http.middlewares.https-redirect.redirectscheme.scheme=https"
+        - "traefik.http.middlewares.https-redirect.redirectscheme.permanent=true"
+
+  app:
+    image: devsandovalbezerra/poupeja-app:latest
+    networks:
+      - traefik-public
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 1
+        delay: 10s
+        order: start-first
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.app.rule=Host(`dash360.mercantilizar.com.br`)"
+        - "traefik.http.routers.app.entrypoints=websecure"
+        - "traefik.http.routers.app.tls.certresolver=letsencrypt"
+        - "traefik.http.services.app.loadbalancer.server.port=80"
+        # Redirect HTTP -> HTTPS
+        - "traefik.http.routers.app-http.rule=Host(`dash360.mercantilizar.com.br`)"
+        - "traefik.http.routers.app-http.entrypoints=web"
+        - "traefik.http.routers.app-http.middlewares=https-redirect"
+
+networks:
+  traefik-public:
+    external: true

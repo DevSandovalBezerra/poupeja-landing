@@ -1,10 +1,10 @@
-node_modules
-npm-debug.log
-Dockerfile
-.dockerignore
-.git
-.gitignore
-README.md
-dev-dist
+﻿node_modules
 dist
-# Adicione outros arquivos/pastas que não devem ir para a imagem
+dev-dist
+.git
+.env
+.env.local
+.env*.local
+*.log
+.agents
+docs
