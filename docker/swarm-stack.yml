@@ -1,8 +1,29 @@
 ﻿version: '3.8'
 
 services:
+  registry:
+    image: registry:2
+    networks:
+      - traefik-public
+    volumes:
+      - registry-data:/var/lib/registry
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.registry.rule=Host(`registry.mercantilizar.com.br`)"
+        - "traefik.http.routers.registry.entrypoints=websecure"
+        - "traefik.http.routers.registry.tls.certresolver=letsencrypt"
+        - "traefik.http.services.registry.loadbalancer.server.port=5000"
+        # Basic auth para proteger o registry — gerar com: htpasswd -nb user pass
+        - "traefik.http.routers.registry.middlewares=registry-auth"
+        - "traefik.http.middlewares.registry-auth.basicauth.users=admin:$$apr1$$HASH_AQUI"
+
   landing:
-    image: devsandovalbezerra/poupeja-landing:latest
+    image: registry.mercantilizar.com.br/poupeja-landing:latest
     networks:
       - traefik-public
     deploy:
@@ -28,7 +49,7 @@ services:
         - "traefik.http.middlewares.https-redirect.redirectscheme.permanent=true"
 
   app:
-    image: devsandovalbezerra/poupeja-app:latest
+    image: registry.mercantilizar.com.br/poupeja-app:latest
     networks:
       - traefik-public
     deploy:
@@ -54,3 +75,6 @@ services:
 networks:
   traefik-public:
     external: true
+
+volumes:
+  registry-data:
