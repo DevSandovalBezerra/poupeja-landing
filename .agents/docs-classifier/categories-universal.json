@@ -1,0 +1,52 @@
+{
+  "categories": [
+    {
+      "id": "01-frontend",
+      "name": "Frontend",
+      "keywords": ["frontend", "ui", "react", "javascript", "css", "html", "component", "design", "interface", "user interface", "next.js", "tailwind", "responsive", "mobile", "web"],
+      "description": "Frontend development, UI components, user interfaces"
+    },
+    {
+      "id": "02-backend",
+      "name": "Backend",
+      "keywords": ["backend", "api", "server", "node", "express", "python", "fastapi", "service", "endpoint", "controller", "route", "middleware", "lambda", "function"],
+      "description": "Backend development, APIs, server-side logic"
+    },
+    {
+      "id": "03-database",
+      "name": "Database",
+      "keywords": ["database", "db", "sql", "postgres", "mysql", "mongodb", "schema", "migration", "query", "table", "model", "prisma", "orm", "redis", "storage"],
+      "description": "Database, storage, data modeling"
+    },
+    {
+      "id": "04-auth",
+      "name": "Authentication",
+      "keywords": ["auth", "authentication", "login", "password", "oauth", "jwt", "token", "session", "security", "user", "role", "permission", "access", "authorization", "acl"],
+      "description": "Authentication, authorization, security"
+    },
+    {
+      "id": "05-pagamentos",
+      "name": "Pagamentos",
+      "keywords": ["payment", "pagamento", "stripe", "pix", "checkout", "invoice", "billing", "subscription", "subscription", "plan", "preco", "price", "valor", "transacao", "transaction", "Gateway"],
+      "description": "Payments, billing, subscriptions, financial transactions"
+    },
+    {
+      "id": "06-testes",
+      "name": "Testes",
+      "keywords": ["test", "testing", "jest", "cypress", "playwright", "unit", "integration", "e2e", "coverage", "spec", "mock", "vitest"],
+      "description": "Testing, quality assurance"
+    },
+    {
+      "id": "07-deploy",
+      "name": "Deploy",
+      "keywords": ["deploy", "deployment", "ci", "cd", "github", "vercel", "aws", "docker", "kubernetes", "pipeline", "build", "release", "production", "environment", "serverless", "heroku", "netlify"],
+      "description": "Deployment, CI/CD, DevOps"
+    },
+    {
+      "id": "99-geral",
+      "name": "Geral",
+      "keywords": ["readme", "getting started", "overview", "index", "home", "introduction", "about", "license", "changelog", "contributing", "guide"],
+      "description": "General documentation, getting started, guides"
+    }
+  ]
+}

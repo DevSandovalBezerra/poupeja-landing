@@ -1,0 +1,203 @@
+{
+  "name": "Receptor",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "### Recebe as mensagens ",
+        "height": 220,
+        "width": 700,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -320,
+        20
+      ],
+      "typeVersion": 1,
+      "id": "d411a9db-d40c-4b06-87fe-461888cba6ef",
+      "name": "Sticky Note56"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "poupeja-dev-rcpto",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -260,
+        60
+      ],
+      "id": "47dae429-14ee-42b6-89e2-9db07342ddb2",
+      "webhookId": "64b7e227-ed10-4bb4-b396-cf996c8dcf24"
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "nomeApp",
+              "value": "NOME DO SEU APP"
+            },
+            {
+              "name": "telefoneSuporte",
+              "value": "(11) SEU NUMERO DE SUPORTE SEM IA"
+            },
+            {
+              "name": "emailSuporte",
+              "value": "EMAILDESUPORTE@EMAIL.COM"
+            },
+            {
+              "name": "projectUrlSupabase",
+              "value": "https://LINK-DO-SEU-PROJETO-SUPABASE"
+            },
+            {
+              "name": "urlSite",
+              "value": "https://LINK-DO-SEU-SITE"
+            },
+            {
+              "name": "data.key.remoteJid",
+              "value": "={{ $json.body.data.key.remoteJid.includes('@s.whatsapp.net') \n    ? $json.body.data.key.remoteJid.split('@')[0] \n    : $json.body.data.key.senderPn.split('@')[0] }}"
+            },
+            {
+              "name": "data.message.conversation",
+              "value": "={{ $('Webhook').item.json.body.data.message.conversation }}"
+            },
+            {
+              "name": "server_url",
+              "value": "={{ $('Webhook').item.json.body.server_url }}"
+            },
+            {
+              "name": "apikey",
+              "value": "={{ $('Webhook').item.json.body.apikey }}"
+            },
+            {
+              "name": "instance",
+              "value": "={{ $('Webhook').item.json.body.instance }}"
+            },
+            {
+              "name": "body.data.key.fromMe",
+              "value": "={{ $('Webhook').item.json.body.data.key.fromMe }}"
+            },
+            {
+              "name": "data.messageType",
+              "value": "={{ $('Webhook').item.json.body.data.messageType }}"
+            },
+            {
+              "name": "body.event",
+              "value": "={{ $('Webhook').item.json.body.event }}"
+            },
+            {
+              "name": "data.message.base64",
+              "value": "={{ $('Webhook').item.json.body.data.message.base64 }}"
+            },
+            {
+              "name": "data.contextInfo.quotedMessage.conversation",
+              "value": "={{ $('Webhook').item.json.body.data.contextInfo.quotedMessage.conversation }}"
+            },
+            {
+              "name": "data.pushName",
+              "value": "={{ $('Webhook').item.json.body.data.pushName }}"
+            }
+          ]
+        },
+        "options": {
+          "dotNotation": true
+        }
+      },
+      "name": "Extrair Dados",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        -60,
+        60
+      ],
+      "id": "d9621cbe-db2f-4a80-96c0-eed9ad99d459",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "queue": "poupeja_dev",
+        "options": {
+          "arguments": {
+            "argument": [
+              {
+                "key": "x-queue-type",
+                "value": "quorum"
+              }
+            ]
+          }
+        }
+      },
+      "name": "Enviar para RabbitMQ",
+      "type": "n8n-nodes-base.rabbitmq",
+      "typeVersion": 1,
+      "position": [
+        160,
+        60
+      ],
+      "id": "61168110-1aff-48bf-afc7-9f72bd10ee65",
+      "credentials": {
+        "rabbitmq": {
+          "id": "aZ09YGwcdYG6VY0c",
+          "name": "RabbitMQ Atendezapi"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "### Informe seus dados AQUI 👇🏻",
+        "height": 200,
+        "width": 220,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -120,
+        0
+      ],
+      "typeVersion": 1,
+      "id": "8817249b-3790-4953-815d-02bdaa96ff03",
+      "name": "Sticky Note"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Extrair Dados",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extrair Dados": {
+      "main": [
+        [
+          {
+            "node": "Enviar para RabbitMQ",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "bbc0cf35-7013-4fc6-b397-12a11229c9d0",
+  "meta": {
+    "instanceId": "aff053048d0333fe918a1447ca3a844554161ff56020ffcfd4746de93e0cd2be"
+  },
+  "id": "CeXK55CdzeL4wtr5",
+  "tags": []
+}
