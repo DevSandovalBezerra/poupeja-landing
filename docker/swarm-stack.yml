@@ -23,7 +23,7 @@ services:
         - "traefik.http.middlewares.registry-auth.basicauth.users=admin:$$apr1$$HASH_AQUI"
 
   landing:
-    image: registry.mercantilizar.com.br/poupeja-landing:latest
+    image: ghcr.io/devsandovalbezerra/poupeja-landing:latest
     networks:
       - traefik-public
     deploy:
