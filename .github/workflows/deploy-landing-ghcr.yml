@@ -36,9 +36,6 @@ jobs:
             VITE_SUPABASE_URL=${{ secrets.VITE_SUPABASE_URL }}
             VITE_SUPABASE_ANON_KEY=${{ secrets.VITE_SUPABASE_ANON_KEY }}
             VITE_LOG_LEVEL=info
-            VITE_USE_REDIS=${{ secrets.VITE_USE_REDIS }}
-            VITE_REDIS_URL=${{ secrets.VITE_REDIS_URL }}
-            VITE_REDIS_TOKEN=${{ secrets.VITE_REDIS_TOKEN }}
             VITE_LOGO_WIDTH=${{ secrets.VITE_LOGO_WIDTH }}
             VITE_LOGO_HEIGHT=${{ secrets.VITE_LOGO_HEIGHT }}
             VITE_SUPPORT_EMAIL=${{ secrets.VITE_SUPPORT_EMAIL }}
