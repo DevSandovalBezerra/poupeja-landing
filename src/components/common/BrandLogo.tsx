@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useBrandingConfig } from '@/hooks/useBrandingConfig';
+import { landingEnv } from '@/config/landingEnv';
 
 interface BrandLogoProps {
   size?: 'sm' | 'md' | 'lg';
@@ -11,7 +12,7 @@ interface BrandLogoProps {
 
 const sizeClasses = {
   sm: 'h-6 w-6',
-  md: 'h-8 w-8', 
+  md: 'h-8 w-8',
   lg: 'h-10 w-10'
 };
 
@@ -19,6 +20,11 @@ const textSizeClasses = {
   sm: 'text-sm',
   md: 'text-lg',
   lg: 'text-xl'
+};
+
+const customLogoStyle = {
+  width: `${landingEnv.logoWidth}px`,
+  height: `${landingEnv.logoHeight}px`
 };
 
 export const BrandLogo: React.FC<BrandLogoProps> = ({
@@ -41,7 +47,6 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
     setImageLoaded(true);
   };
 
-  // Se está carregando ou não temos dados ainda
   if (isLoading || (!logoUrl && !companyName)) {
     return (
       <div className={`flex items-center space-x-2 ${className}`}>
@@ -56,28 +61,28 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
   return (
     <div className={`flex items-center space-x-2 ${className}`}>
       {logoUrl && !imageError ? (
-        <div className="relative">
+        <div className="relative" style={customLogoStyle}>
           {!imageLoaded && (
-            <Skeleton className={`absolute inset-0 ${sizeClasses[size]} rounded-lg`} />
+            <Skeleton className="absolute inset-0 rounded-lg" style={customLogoStyle} />
           )}
-          <img 
-            src={logoUrl} 
+          <img
+            src={logoUrl}
             alt={logoAltText || `Logo ${companyName}`}
-            className={`${sizeClasses[size]} object-contain ${!imageLoaded ? 'opacity-0' : 'opacity-100'} transition-opacity duration-200`}
+            className={`object-contain ${!imageLoaded ? 'opacity-0' : 'opacity-100'} transition-opacity duration-200`}
+            style={customLogoStyle}
             onError={handleImageError}
             onLoad={handleImageLoad}
             loading="eager"
           />
         </div>
       ) : (
-        // Fallback para primeira letra
         <div className={`${sizeClasses[size]} bg-primary rounded-lg flex items-center justify-center flex-shrink-0`}>
           <span className="text-primary-foreground font-bold text-sm">
             {companyName?.charAt(0) || 'P'}
           </span>
         </div>
       )}
-      
+
       {showCompanyName && (
         <span className={`${textSizeClasses[size]} font-bold text-primary`}>
           {companyName || 'PoupeJá!'}
@@ -85,4 +90,4 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
       )}
     </div>
   );
-}; 
+};

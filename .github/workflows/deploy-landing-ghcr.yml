@@ -39,6 +39,17 @@ jobs:
             VITE_USE_REDIS=${{ secrets.VITE_USE_REDIS }}
             VITE_REDIS_URL=${{ secrets.VITE_REDIS_URL }}
             VITE_REDIS_TOKEN=${{ secrets.VITE_REDIS_TOKEN }}
+            VITE_LOGO_WIDTH=${{ secrets.VITE_LOGO_WIDTH }}
+            VITE_LOGO_HEIGHT=${{ secrets.VITE_LOGO_HEIGHT }}
+            VITE_SUPPORT_EMAIL=${{ secrets.VITE_SUPPORT_EMAIL }}
+            VITE_SUPPORT_WHATSAPP=${{ secrets.VITE_SUPPORT_WHATSAPP }}
+            VITE_PLAN_PRICE_MONTHLY=${{ secrets.VITE_PLAN_PRICE_MONTHLY }}
+            VITE_PLAN_PRICE_ANNUAL=${{ secrets.VITE_PLAN_PRICE_ANNUAL }}
+            VITE_PLAN_FEATURES_MONTHLY=${{ secrets.VITE_PLAN_FEATURES_MONTHLY }}
+            VITE_PLAN_FEATURES_ANNUAL=${{ secrets.VITE_PLAN_FEATURES_ANNUAL }}
+            VITE_TERMS_URL=${{ secrets.VITE_TERMS_URL }}
+            VITE_PRIVACY_URL=${{ secrets.VITE_PRIVACY_URL }}
+            VITE_TEMPLATE_VARIANT=${{ secrets.VITE_TEMPLATE_VARIANT }}
           tags: |
             ghcr.io/devsandovalbezerra/poupeja-landing:latest
             ghcr.io/devsandovalbezerra/poupeja-landing:${{ github.sha }}

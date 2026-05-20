@@ -1,11 +1,11 @@
-
-import React from 'react';
+﻿import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Check, Star, Loader2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { usePlanConfig } from '@/hooks/usePlanConfig';
+import { landingEnv } from '@/config/landingEnv';
 
 const LandingPricing = () => {
   const { config, isLoading, error } = usePlanConfig();
@@ -35,27 +35,27 @@ const LandingPricing = () => {
   }
 
   const plans = [{
-    name: "Mensal",
+    name: 'Mensal',
     price: config.prices.monthly.displayPrice,
-    period: "/mês",
-    description: "Para uso pessoal completo",
-    features: ["Movimentos ilimitados", "Dashboard completo", "Todos os relatórios", "Metas ilimitadas", "Agendamentos", "Suporte prioritário"],
+    period: '/mês',
+    description: 'Para uso pessoal completo',
+    features: landingEnv.planFeaturesMonthly,
     limitations: [],
-    buttonText: "Assinar Agora",
-    buttonVariant: "default" as const,
+    buttonText: 'Assinar Agora',
+    buttonVariant: 'default' as const,
     popular: false,
     linkTo: `/register?priceId=${config.prices.monthly.priceId}&planType=monthly`
   }, {
-    name: "Anual",
+    name: 'Anual',
     price: config.prices.annual.displayPrice,
-    period: "/ano",
+    period: '/ano',
     originalPrice: config.prices.annual.displayOriginalPrice,
     savings: config.prices.annual.displaySavings,
-    description: "Melhor custo-benefício",
-    features: ["Movimentos ilimitados", "Dashboard completo", "Todos os relatórios", "Metas ilimitadas", "Agendamentos", "Suporte VIP", "Backup automático", "Análises avançadas"],
+    description: 'Melhor custo-benefício',
+    features: landingEnv.planFeaturesAnnual,
     limitations: [],
-    buttonText: "Melhor Oferta",
-    buttonVariant: "default" as const,
+    buttonText: 'Melhor Oferta',
+    buttonVariant: 'default' as const,
     popular: true,
     linkTo: `/register?priceId=${config.prices.annual.priceId}&planType=annual`
   }];
