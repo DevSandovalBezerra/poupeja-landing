@@ -32,6 +32,13 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
+          build-args: |
+            VITE_SUPABASE_URL=${{ secrets.VITE_SUPABASE_URL }}
+            VITE_SUPABASE_ANON_KEY=${{ secrets.VITE_SUPABASE_ANON_KEY }}
+            VITE_LOG_LEVEL=info
+            VITE_USE_REDIS=${{ secrets.VITE_USE_REDIS }}
+            VITE_REDIS_URL=${{ secrets.VITE_REDIS_URL }}
+            VITE_REDIS_TOKEN=${{ secrets.VITE_REDIS_TOKEN }}
           tags: |
             ghcr.io/devsandovalbezerra/poupeja-landing:latest
             ghcr.io/devsandovalbezerra/poupeja-landing:${{ github.sha }}
