@@ -8,6 +8,7 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-24.04
+    environment: landing-poupeja
     permissions:
       contents: read
       packages: write
