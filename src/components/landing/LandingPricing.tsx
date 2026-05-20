@@ -44,7 +44,7 @@ const LandingPricing = () => {
     buttonText: 'Assinar Agora',
     buttonVariant: 'default' as const,
     popular: false,
-    linkTo: `/register?priceId=${config.prices.monthly.priceId}&planType=monthly`
+    linkTo: `${landingEnv.appUrl}/register?priceId=${config.prices.monthly.priceId}&planType=monthly`
   }, {
     name: 'Anual',
     price: config.prices.annual.displayPrice,
@@ -57,17 +57,17 @@ const LandingPricing = () => {
     buttonText: 'Melhor Oferta',
     buttonVariant: 'default' as const,
     popular: true,
-    linkTo: `/register?priceId=${config.prices.annual.priceId}&planType=annual`
+    linkTo: `${landingEnv.appUrl}/register?priceId=${config.prices.annual.priceId}&planType=annual`
   }];
 
   return (
     <section className="py-20 w-full" id="planos">
       <div className="w-full px-4">
-        <motion.div 
-          className="text-center mb-16" 
-          initial={{ opacity: 0, y: 20 }} 
-          whileInView={{ opacity: 1, y: 0 }} 
-          transition={{ duration: 0.6 }} 
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -77,21 +77,21 @@ const LandingPricing = () => {
             Transforme sua vida financeira com nossos planos completos
           </p>
         </motion.div>
-        
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto" 
-          initial={{ opacity: 0, y: 40 }} 
-          whileInView={{ opacity: 1, y: 0 }} 
-          transition={{ duration: 0.6, staggerChildren: 0.1 }} 
+
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, staggerChildren: 0.1 }}
           viewport={{ once: true }}
         >
           {plans.map((plan, index) => (
-            <motion.div 
-              key={index} 
-              initial={{ opacity: 0, y: 20 }} 
-              whileInView={{ opacity: 1, y: 0 }} 
-              transition={{ duration: 0.6, delay: index * 0.1 }} 
-              viewport={{ once: true }} 
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
               className="relative"
             >
               <Card className={`h-full relative ${plan.popular ? 'border-primary shadow-xl scale-105' : 'hover:shadow-lg'} transition-all duration-300`}>
@@ -103,7 +103,7 @@ const LandingPricing = () => {
                     </div>
                   </div>
                 )}
-                
+
                 <CardHeader className="text-center pb-4">
                   <CardTitle className="text-2xl font-bold">{plan.name}</CardTitle>
                   <div className="mt-4">
@@ -120,7 +120,7 @@ const LandingPricing = () => {
                   </div>
                   <p className="text-muted-foreground mt-2">{plan.description}</p>
                 </CardHeader>
-                
+
                 <CardContent className="pt-0">
                   <ul className="space-y-3 mb-8">
                     {plan.features.map((feature, idx) => (
@@ -135,7 +135,7 @@ const LandingPricing = () => {
                       </li>
                     ))}
                   </ul>
-                  
+
                   <Button className="w-full" variant={plan.buttonVariant} size="lg" asChild>
                     <Link to={plan.linkTo}>{plan.buttonText}</Link>
                   </Button>

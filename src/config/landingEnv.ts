@@ -7,7 +7,9 @@
 };
 
 export const landingEnv = {
+  appUrl: import.meta.env.VITE_APP_URL || 'https://dash360.mercantilizar.com.br',
   templateVariant: import.meta.env.VITE_TEMPLATE_VARIANT || 'template1',
+  logoUrl: import.meta.env.VITE_LOGO_URL || '/placeholder.svg',
   logoWidth: Number(import.meta.env.VITE_LOGO_WIDTH || 200),
   logoHeight: Number(import.meta.env.VITE_LOGO_HEIGHT || 60),
   supportEmail: import.meta.env.VITE_SUPPORT_EMAIL || 'suporte@poupeja.com',

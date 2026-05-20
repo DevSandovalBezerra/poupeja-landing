@@ -1,9 +1,9 @@
 
 import React, { useCallback } from 'react';
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { BrandLogo } from '@/components/common/BrandLogo';
+import { landingEnv } from '@/config/landingEnv';
 
 const LandingHeader = () => {
   
@@ -26,7 +26,7 @@ const LandingHeader = () => {
         
         <div className="flex items-center space-x-2 md:space-x-4">
           <Button variant="ghost" asChild>
-            <Link to="/login">Entrar</Link>
+            <a href={`${landingEnv.appUrl}/login`}>Entrar</a>
           </Button>
           <Button 
             asChild={false} 
